@@ -1,8 +1,6 @@
 import postgresPull as pp
 import getExtrema as ge
 import trendlineFilters as tf
-import matplotlib.pyplot as plt
-import numpy as np
 import json
 
 def algolines(ticker, days_out, wick_percent, M_max, proximity_percent):
