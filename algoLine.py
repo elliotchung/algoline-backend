@@ -26,7 +26,7 @@ def algolines(ticker, days_out, wick_percent, M_max, proximity_percent):
                 "value": trendline[1][i],
                 "time": OHLC[trendline[0][i]]['date']
             })
-            low_trendlines_list.append(temp_list)
+        low_trendlines_list.append(temp_list)
     for trendline in high_trendlines:
         temp_list = []
         for i in range(len(trendline[0])):
@@ -35,5 +35,5 @@ def algolines(ticker, days_out, wick_percent, M_max, proximity_percent):
                 "value": trendline[1][i],
                 "time": OHLC[trendline[0][i]]['date']
             })
-            high_trendlines_list.append(temp_list)
+        high_trendlines_list.append(temp_list)
     return low_trendlines_list, high_trendlines_list
