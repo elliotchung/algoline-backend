@@ -22,8 +22,8 @@ def algolines():
     ticker = request.json.get('ticker')
     low_trendlines_json, high_trendlines_json = al.algolines(ticker, days_out, wick_percent, M_max, proximity_percent)
     response = json.dumps({
-        'low_trendlines': low_trendlines_json,
-        'high_trendlines': high_trendlines_json
+        "low_trendlines": low_trendlines_json,
+        "high_trendlines": high_trendlines_json
     })
     return response
 
