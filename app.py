@@ -1,7 +1,7 @@
 from flask import Flask, request
 import postgresPull as pp
-import json
 import algoLine as al
+import json
 
 app = Flask(__name__)
 
@@ -21,10 +21,11 @@ def api():
 def algolines():
     ticker = request.json.get('ticker')
     low_trendlines_json, high_trendlines_json = al.algolines(ticker, days_out, wick_percent, M_max, proximity_percent)
-    response = json.dumps({
+    response = {
         "low_trendlines": low_trendlines_json,
         "high_trendlines": high_trendlines_json
-    })
+    }
+    response = json.dumps(response)
     return response
 
 if __name__ == '__main__':
