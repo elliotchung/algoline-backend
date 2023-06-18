@@ -5,10 +5,10 @@ import algoLine as al
 app = Flask(__name__)
 
 #Variables
-days_out = 10
+""" days_out = 10
 wick_percent = 0.01
 M_max = 1
-proximity_percent = 0.5
+proximity_percent = 0.5 """
 
 @app.route('/OHLC', methods=['POST'])
 def api():
@@ -19,6 +19,10 @@ def api():
 @app.route('/algolines', methods=['POST'])
 def algolines():
     ticker = request.json.get('ticker')
+    days_out = request.json.get('days_out')
+    wick_percent = request.json.get('wick_percent')
+    M_max = request.json.get('M_max')
+    proximity_percent = request.json.get('proximity_percent')
     low_trendlines_json, high_trendlines_json = al.algolines(ticker, days_out, wick_percent, M_max, proximity_percent)
     response = {
         "low_trendlines": low_trendlines_json,
