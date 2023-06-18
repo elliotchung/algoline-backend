@@ -53,14 +53,14 @@ def pull_data(ticker):
         if len(dates) == len(openPrices) == len(highPrices) == len(lowPrices) == len(closePrices) == len(volumes) == len(vol_50):
             OHLC = [
                 {
-                    'index': i,
-                    'open': float(openPrices[i]),
-                    'high': float(highPrices[i]),
-                    'low': float(lowPrices[i]),
-                    'close': float(closePrices[i]),
-                    'volume': float(volumes[i]),
-                    'vol_50': float(vol_50[i]),
-                    'date': date_to_unix(dates[i]),
+                    "index": i,
+                    "open": float(openPrices[i]),
+                    "high": float(highPrices[i]),
+                    "low": float(lowPrices[i]),
+                    "close": float(closePrices[i]),
+                    "volume": float(volumes[i]),
+                    "vol_50": float(vol_50[i]),
+                    "date": date_to_unix(dates[i]),
                 }
                 for i in range(len(dates))
             ]
