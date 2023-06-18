@@ -1,7 +1,6 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import postgresPull as pp
 import algoLine as al
-import json
 
 app = Flask(__name__)
 
@@ -15,7 +14,7 @@ proximity_percent = 0.5
 def api():
     ticker = request.json.get('ticker')
     OHLC = pp.pull_data(ticker)
-    response = json.dumps(OHLC)
+    response = jsonify(OHLC)
     return response
 @app.route('/algolines', methods=['POST'])
 def algolines():
@@ -25,7 +24,7 @@ def algolines():
         "low_trendlines": low_trendlines_json,
         "high_trendlines": high_trendlines_json
     }
-    response = json.dumps(response)
+    response = jsonify(response)
     return response
 
 if __name__ == '__main__':
