@@ -83,7 +83,7 @@ def check_proximity(ohlcData, y_arr, isMin, proximity_percent):
         return False if (ohlcData[-1]['high']*(1 + proximity_percent)) < y_arr[-1] else True
 
 #Full Trendline Filter
-def trendlineFilter(ohlcData, minima, maxima, days_out, wick_percent, M_max, proximity_percent, third_point_percent, no_points):
+def trendlineFilter(ohlcData, minima, maxima, days_out, wick_percent, M_max, proximity_percent):
     longwick_minima = [x for x in minima if longWickFilter(True, x, wick_percent)]
     longwick_maxima = [x for x in maxima if longWickFilter(False, x, wick_percent)]
     start_minima = [x for x in longwick_minima if highVolumeFilter(x)]
@@ -104,12 +104,12 @@ def trendlineFilter(ohlcData, minima, maxima, days_out, wick_percent, M_max, pro
         M, C = calculate_gradient_intercept(i[0], ohlcData[i[0]]['low'], i[1], ohlcData[i[1]]['low'])
         if gradientFilter(M, M_max):
             x_arr, y_arr = draw_lines(i[0], ohlcData[-1]['index'], M, C)
-            if check_intersection(x_arr, y_arr, ohlcData, days_out, True) and check_proximity(ohlcData, y_arr, True, proximity_percent) and check_third_point(x_arr, y_arr, ohlcData, True, third_point_percent, no_points):
+            if check_intersection(x_arr, y_arr, ohlcData, days_out, True) and check_proximity(ohlcData, y_arr, True, proximity_percent):
                 low_trendlines.append([x_arr, y_arr])
     for i in high_trendlines_keys:
         M, C = calculate_gradient_intercept(i[0], ohlcData[i[0]]['high'], i[1], ohlcData[i[1]]['high'])
         if gradientFilter(M, M_max):
             x_arr, y_arr = draw_lines(i[0], ohlcData[-1]['index'], M, C)
-            if check_intersection(x_arr, y_arr, ohlcData, days_out, False) and check_proximity(ohlcData, y_arr, False, proximity_percent) and check_third_point(x_arr, y_arr, ohlcData, False, third_point_percent, no_points):
+            if check_intersection(x_arr, y_arr, ohlcData, days_out, False) and check_proximity(ohlcData, y_arr, False, proximity_percent):
                 high_trendlines.append([x_arr, y_arr])
     return low_trendlines, high_trendlines
