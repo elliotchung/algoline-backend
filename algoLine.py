@@ -2,10 +2,10 @@ import postgresPull as pp
 import getExtrema as ge
 import trendlineFilters as tf
 
-def algolines(ticker, days_out, wick_percent, M_max, proximity_percent):
+def algolines(ticker, days_out, wick_percent, M_max, proximity_percent, third_point_percent, no_points):
     OHLC = pp.pull_data(ticker)
     minima, maxima = ge.get_extrema_formatted(OHLC)
-    low_trendlines, high_trendlines = tf.trendlineFilter(OHLC, minima, maxima, days_out, wick_percent, M_max, proximity_percent)
+    low_trendlines, high_trendlines = tf.trendlineFilter(OHLC, minima, maxima, days_out, wick_percent, M_max, proximity_percent, third_point_percent, no_points)
 
     #convert to List
     for trendline in low_trendlines:

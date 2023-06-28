@@ -23,7 +23,9 @@ def algolines():
     wick_percent = request.json.get('wick_percent')
     M_max = request.json.get('M_max')
     proximity_percent = request.json.get('proximity_percent')
-    low_trendlines_json, high_trendlines_json = al.algolines(ticker, days_out, wick_percent, M_max, proximity_percent)
+    third_point_percent = request.json.get('third_point_percent')
+    no_points = request.json.get('no_points')
+    low_trendlines_json, high_trendlines_json = al.algolines(ticker, days_out, wick_percent, M_max, proximity_percent, third_point_percent, no_points)
     response = {
         "low_trendlines": low_trendlines_json,
         "high_trendlines": high_trendlines_json
